@@ -1,7 +1,12 @@
-import {useRef} from "react"
+import {useRef, useContext} from "react"
 import classes from './NewTodo.module.css'
+import { TodosContext } from "../store/todos-context";
 
-const NewTodo: React.FC<{onAddTodo: (text: string) => void}> = (props) => {
+
+const NewTodo: React.FC = () => {
+
+  const todosCtx = useContext(TodosContext);
+
 
   const todoTextInputRef = useRef<HTMLInputElement>(null); //found using mdn - input type element html, needs to set default vaue or else error
 
@@ -16,7 +21,7 @@ const NewTodo: React.FC<{onAddTodo: (text: string) => void}> = (props) => {
     }
 
 
-    props.onAddTodo(enteredText);
+    todosCtx.addTodo(enteredText);
   }
 
 
